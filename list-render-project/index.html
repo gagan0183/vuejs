@@ -21,7 +21,7 @@
       <input type="text" v-model="enteredGoal" />
       <button @click="insert">Add Goal</button>
       <p v-if="!goals.length">No goals have been added yet - please start adding some!</p>
-      <ul v-else v-for="(goal, index) in goals">
+      <ul v-else v-for="(goal, index) in goals" :key="goal" @click="remove(index)">
         <li>{{ index }} - {{ goal }}</li>
       </ul>
     </section>
