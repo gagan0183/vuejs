@@ -5,32 +5,32 @@ const app = Vue.createApp({
       name: "",
       lastName: "",
       confirmName: "",
-      fullname: ""
+      // fullname: ""
     };
   },
   watch: {
-    name(value) {
-      if (value === "") {
-        this.fullname = "";
-      } else {
-        this.fullname = value + " " + this.lastName;
-      }
-    },
-    lastName(value) {
-      if (value === "") {
-        this.fullname = "";
-      } else {
-        this.fullname = this.name + " " + value;
-      }
-    }
+    // name(value) {
+    //   if (value === "") {
+    //     this.fullname = "";
+    //   } else {
+    //     this.fullname = value + " " + this.lastName;
+    //   }
+    // },
+    // lastName(value) {
+    //   if (value === "") {
+    //     this.fullname = "";
+    //   } else {
+    //     this.fullname = this.name + " " + value;
+    //   }
+    // }
   },
   computed: {
-    // fullname() {
-    //    if (this.name === "") {
-    //     return "";
-    //   }
-    //   return this.name + " last name";
-    // }
+    fullname() {
+       if (this.name === "" || this.lastName === "") {
+        return "";
+      }
+      return this.name + " " + this.lastName;
+    }
   },
   methods: {
     outputFullName() {
