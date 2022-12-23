@@ -21,8 +21,13 @@
       <input type="text" v-model="enteredGoal" />
       <button @click="insert">Add Goal</button>
       <p v-if="!goals.length">No goals have been added yet - please start adding some!</p>
-      <ul v-else v-for="goal in goals">
-        <li>{{ goal }}</li>
+      <ul v-else v-for="(goal, index) in goals">
+        <li>{{ index }} - {{ goal }}</li>
+      </ul>
+      <ul>
+        <li v-for="(value, key) in {'name': 'test', 'value': 1}">
+          {{ value }} - {{ key }}
+        </li>
       </ul>
     </section>
   </body>
