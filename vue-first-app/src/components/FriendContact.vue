@@ -11,7 +11,22 @@
 
 <script>
     export default {
-        props: ['name', 'phone', 'emailAddress'],
+        props: {
+            name: {
+                type: String,
+                required: true
+            },
+            phone: {
+                type: String,
+                required: true
+            },
+            emailAddress: {
+                type: String,
+                required: true
+                // default - default values
+                // validate - validate values
+            }
+        },
         data() {
             return {
                 isdetailAreVisible: false,
