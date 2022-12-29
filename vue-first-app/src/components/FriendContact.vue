@@ -1,8 +1,8 @@
 <template>
     <li>
         <h2>{{ friend.name }}</h2>
-        <button @click="toggle">Show details</button>
-        <ul v-if="isdetailsAreVisible">
+        <button @click="toggle">{{ isdetailAreVisible ? 'Hide' : 'Show' }} details</button>
+        <ul v-if="isdetailAreVisible">
             <li><strong>Phone:</strong>{{ friend.phone }}</li> 
             <li><strong>Email:</strong>{{ friend.email }}</li>
         </ul>
@@ -13,7 +13,7 @@
     export default {
         data() {
             return {
-                isdetailsAreVisible: false,
+                isdetailAreVisible: false,
                 friend: {
                     id: "manuel",
                     name: "Manuel Lorenz",
@@ -24,7 +24,7 @@
         },
         methods: {
             toggle() {
-                this.isdetailsAreVisible = !this.isdetailsAreVisible;
+                this.isdetailAreVisible = !this.isdetailAreVisible;
             }
         }
     };
