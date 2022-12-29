@@ -3,7 +3,7 @@
     <header><h1>My Friends</h1></header>
     <new-friend @add-contact="addContact"></new-friend>
     <ul>
-      <friend-contact v-for="friend in friends" :key="friend.id" :friend="friend" :is-favorite="friend.isFavorite" @toggle-favorite="toggleFavorite"></friend-contact>
+      <friend-contact v-for="friend in friends" :key="friend.id" :friend="friend" :is-favorite="friend.isFavorite" @toggle-favorite="toggleFavorite" @delete="deleteFriend"></friend-contact>
     </ul>
   </section>
 </template>
@@ -36,7 +36,14 @@
         friend.isFavorite = !friend.isFavorite;
       },
       addContact(data) {
-        this.friends.push(data);
+        this.friends.push({
+          id: new Date().toISOString(),
+          ...data,
+          isFavorite: false
+        });
+      },
+      deleteFriend(id) {
+        this.friends =  this.friends.filter(friend => friend.id !== id);
       }
     }
   }

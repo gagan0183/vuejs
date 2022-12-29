@@ -7,6 +7,7 @@
             <li><strong>Phone:</strong>{{ friend.phone }}</li> 
             <li><strong>Email:</strong>{{ friend.email }}</li>
         </ul>
+        <button @click="deleteFriend">Delete</button>
     </li>
 </template>
 
@@ -31,7 +32,14 @@
                     console.warn('Id is missing');
                     return false;
                 }
-            }
+            },
+            'delete': function(id) {
+                if (id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
         },
         data() {
             return {
@@ -44,6 +52,9 @@
             },
             toggleFriend() {
                 this.$emit('toggle-favorite', this.friend.id);
+            },
+            deleteFriend() {
+                this.$emit('delete', this.friend.id);
             }
         }
     };
