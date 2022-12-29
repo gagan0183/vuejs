@@ -2,7 +2,7 @@
   <section>
     <header><h1>My Friends</h1></header>
     <ul>
-      <friend-contact v-for="friend in friends" :key="friend.id" :friend="friend" :is-favorite="true"></friend-contact>
+      <friend-contact v-for="friend in friends" :key="friend.id" :friend="friend" :is-favorite="friend.isFavorite" @toggle-favorite="toggleFavorite"></friend-contact>
     </ul>
   </section>
 </template>
@@ -16,18 +16,25 @@
             id: "manuel",
             name: "Manuel Lorenz",
             phone: "01243 45678 90",
-            email: "manuel@localhost.com"
+            email: "manuel@localhost.com",
+            isFavorite: true
           },
           {
             id: "julie",
             name: "Julie Jones",
             phone: "01243 45678 90",
-            email: "julie@localhost.com"
+            email: "julie@localhost.com",
+            isFavorite: false
           }
         ]
       }
     },
-    methods: {}
+    methods: {
+      toggleFavorite(id) {
+        const friend = this.friends.find(friend => friend.id=== id);
+        friend.isFavorite = !friend.isFavorite;
+      }
+    }
   }
 </script>
 
