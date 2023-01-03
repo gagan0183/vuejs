@@ -2,20 +2,24 @@
     <h2>Manage Goals</h2>
     <input type="text" ref="goal" />
     <button @click="setGoal">Set Goal</button>
-    <error-alert v-if="isInvalidGoal">
-        <h2>Invalid goal</h2>
-        <p>Please enter a valid value</p>
-        <button @click="close">Ok</button>
-    </error-alert>
+    <Teleport to="body">
+        <error-alert v-if="isInvalidGoal">
+            <h2>Invalid goal</h2>
+            <p>Please enter a valid value</p>
+            <button @click="close">Ok</button>
+        </error-alert>
+    </Teleport>
 </template>
 
 <script>
-    import ErrorAlert from "./ErrorAlert.vue";
+    import { Teleport } from "vue";
+import ErrorAlert from "./ErrorAlert.vue";
 
     export default {
         components: {
-            ErrorAlert
-        },
+    ErrorAlert,
+    Teleport
+},
         data() {
             return {
                 isInvalidGoal: false,
