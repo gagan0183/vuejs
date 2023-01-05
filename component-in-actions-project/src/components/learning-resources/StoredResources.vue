@@ -14,7 +14,7 @@
 import ResourceItem from './ResourceItem.vue';
 
 export default {
-  props: ['resources'],
+  inject: ['resources'],
   components: {
     ResourceItem,
   },
