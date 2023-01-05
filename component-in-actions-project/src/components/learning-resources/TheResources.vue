@@ -66,11 +66,18 @@ export default {
       this.storedResources.push(newResource);
       this.selectedTab = 'stored-resources';
     },
+    deleteResource(id) {
+      const resources = this.storedResources.filter(
+        (resource) => resource.id !== id
+      );
+      this.storedResources = resources;
+    },
   },
   provide() {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      deleteResource: this.deleteResource,
     };
   },
 };

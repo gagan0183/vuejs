@@ -4,6 +4,7 @@
       v-for="resource in resources"
       :key="resource.id"
       :title="resource.title"
+      :id="resource.id"
       :description="resource.description"
       :link="resource.link"
     ></resource-item>
