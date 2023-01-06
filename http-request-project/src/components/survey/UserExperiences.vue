@@ -8,11 +8,11 @@
         >
       </div>
       <div v-if="isLoading">Loading...</div>
-      <div v-else-if="!isLoading && (!results || results.length === 0)">
-        No experience present
-      </div>
       <div v-else-if="!loading && error">
         {{ error }}
+      </div>
+      <div v-else-if="!isLoading && (!results || results.length === 0)">
+        No experience present
       </div>
       <ul v-else>
         <survey-result
@@ -64,6 +64,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.isLoading = false;
           this.error = 'Unable to fetch experience';
         });
     },
