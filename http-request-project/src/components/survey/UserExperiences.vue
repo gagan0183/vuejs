@@ -11,7 +11,10 @@
       <div v-else-if="!isLoading && (!results || results.length === 0)">
         No experience present
       </div>
-      <ul v-else-if="!isLoading && results && results.length > 0">
+      <div v-else-if="!loading && error">
+        {{ error }}
+      </div>
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -34,28 +37,35 @@ export default {
     return {
       results: [],
       isLoading: false,
+      error: null,
     };
   },
   methods: {
     loadExperience() {
       this.isLoading = true;
+      this.error = null;
       fetch(
         'https://vue-http-project-492bd-default-rtdb.firebaseio.com/surveys.json'
-      ).then(async (response) => {
-        if (response.ok) {
-          const data = await response.json();
-          const results = [];
-          for (const id in data) {
-            results.push({
-              id: id,
-              name: data[id].name,
-              rating: data[id].rating,
-            });
+      )
+        .then(async (response) => {
+          if (response.ok) {
+            const data = await response.json();
+            const results = [];
+            for (const id in data) {
+              results.push({
+                id: id,
+                name: data[id].name,
+                rating: data[id].rating,
+              });
+            }
+            this.results = results;
+            this.isLoading = false;
           }
-          this.results = results;
-          this.isLoading = false;
-        }
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+          this.error = 'Unable to fetch experience';
+        });
     },
   },
   mounted() {
