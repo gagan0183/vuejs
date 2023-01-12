@@ -16,6 +16,7 @@ const router = createRouter({
     {
       path: '/teams',
       component: TeamsList,
+      alias: '/',
     },
     {
       path: '/users',
