@@ -43,13 +43,21 @@ const router = createRouter({
       component: NotValid,
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
+  scrollBehavior(_, __, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     }
     return { left: 0, top: 0 };
   },
+});
+
+router.beforeEach(function (to, from, next) {
+  console.log('Global foreach');
+  console.log(to, from);
+  next(); // allow
+  // next(false); // cancel the navigation
+  // next('/users') // pass route
+  // next({ name: 'team-members', id: 't2' }) // pass name route
 });
 
 const app = createApp(App);
