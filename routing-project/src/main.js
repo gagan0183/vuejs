@@ -19,6 +19,7 @@ const router = createRouter({
       component: TeamsList,
       children: [
         {
+          name: 'team-member',
           path: ':teamId',
           component: TeamMembers,
           props: true,
