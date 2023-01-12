@@ -11,7 +11,11 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
     teamMember() {
-      return { name: 'team-member', params: { teamId: this.id } };
+      return {
+        name: 'team-member',
+        params: { teamId: this.id },
+        query: { sort: 'asc' },
+      };
     },
   },
 };
