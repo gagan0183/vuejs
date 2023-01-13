@@ -22,6 +22,9 @@ const router = createRouter({
         default: TeamsList,
         footer: TeamsFooter,
       },
+      meta: {
+        needsAuth: true,
+      },
       children: [
         {
           name: 'team-member',
@@ -59,6 +62,9 @@ const router = createRouter({
 router.beforeEach(function (to, from, next) {
   console.log('Global foreach');
   console.log(to, from);
+  if (to.meta.needsAuth) {
+    console.log('Needs authentications');
+  }
   next(); // allow
   // next(false); // cancel the navigation
   // next('/users') // pass route
