@@ -23,6 +23,16 @@ export default {
       this.$router.push('/teams');
     },
   },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter');
+    console.log(to, from, next);
+    next();
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log('beforeRouteUpdate');
+    console.log(to, from, next);
+    next();
+  },
 };
 </script>
 

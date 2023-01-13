@@ -37,6 +37,11 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter(to, from, next) {
+        console.log('users beforeEnter');
+        console.log(to, from, next);
+        next();
+      },
     },
     {
       path: '/:NotValid(.*)',
@@ -58,6 +63,12 @@ router.beforeEach(function (to, from, next) {
   // next(false); // cancel the navigation
   // next('/users') // pass route
   // next({ name: 'team-members', id: 't2' }) // pass name route
+});
+
+router.afterEach(function (to, from) {
+  // send analytics
+  console.log('Global aftereach');
+  console.log(to, from);
 });
 
 const app = createApp(App);
