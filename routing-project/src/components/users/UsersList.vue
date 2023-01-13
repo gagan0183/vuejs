@@ -25,12 +25,17 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     console.log('beforeRouteEnter');
-    console.log(to, from, next);
+    console.log(to, from);
     next();
   },
   beforeRouteUpdate(to, from, next) {
     console.log('beforeRouteUpdate');
-    console.log(to, from, next);
+    console.log(to, from);
+    next();
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('beforeRouteLeave');
+    console.log(to, from);
     next();
   },
 };
