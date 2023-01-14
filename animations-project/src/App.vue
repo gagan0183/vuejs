@@ -4,7 +4,15 @@
     <button @click="animate">Animate</button>
   </div>
   <div class="container">
-    <transition name="paragraphs">
+    <transition
+      name="paragraphs"
+      enter-from-class=""
+      enter-to-class=""
+      enter-active-class=""
+      leave-from-class=""
+      leave-to-class=""
+      leave-active-class=""
+    >
       <p v-if="paragraphsIsVisible">This is sometimes visible</p>
     </transition>
     <button @click="toggleParagraphs">Toggle Paragraph</button>
