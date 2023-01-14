@@ -77,7 +77,6 @@ button:active {
   /* transform: translateX(-190px); */
   animation: slide-out 0.3s ease-out forwards;
 }
-
 @keyframes slide-out {
   0% {
     transform: translateX(0) scale(1);
