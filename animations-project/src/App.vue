@@ -6,6 +6,7 @@
   <div class="container">
     <transition
       name="paragraphs"
+      :css="false"
       @before-enter="beforeEnter"
       @before-leave="beforeLeave"
       @enter="enter"
