@@ -1,50 +1,14 @@
 <template>
-  <div class="container">
-    <users-list></users-list>
-  </div>
-  <div class="container">
-    <div class="block" :class="{ animate: animated }"></div>
-    <button @click="animate">Animate</button>
-  </div>
-  <div class="container">
-    <transition
-      name="paragraphs"
-      :css="false"
-      @before-enter="beforeEnter"
-      @before-leave="beforeLeave"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @leave="leave"
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancelled"
-      @leave-cancelled="leaveCancelled"
-    >
-      <p v-if="paragraphsIsVisible">This is sometimes visible</p>
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
     </transition>
-    <button @click="toggleParagraphs">Toggle Paragraph</button>
-  </div>
-  <div class="container">
-    <transition name="button" mode="out-in">
-      <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
-      <button @click="hideUsers" v-else>Hide users</button>
-    </transition>
-  </div>
-  <base-modal @close="hideDialog" :open="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  </router-view>
 </template>
 
 <script>
-import UsersList from './components/UsersList.vue';
-
 export default {
-  components: {
-    UsersList,
-  },
+  components: {},
   data() {
     return {
       dialogIsVisible: false,
@@ -177,6 +141,20 @@ button:active {
 .animate {
   /* transform: translateX(-190px); */
   animation: slide-out 0.3s ease-out forwards;
+}
+
+.route-enter-from {
+}
+
+.route-enter-active {
+  animation: slide-out 0.3s ease-out;
+}
+
+.route-enter-to {
+}
+
+.route-leave-active {
+  animation: slide-out 0.3s ease-in;
 }
 
 .button-enter-from,
