@@ -19,7 +19,8 @@ export default {
   },
   methods: {
     add() {
-      this.$store.commit('increment', { value: 1 });
+      // this.$store.commit('increment', { value: 1 });
+      this.$store.dispatch('increment', { value: 1 });
     },
   },
 };
