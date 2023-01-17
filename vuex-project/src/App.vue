@@ -28,7 +28,7 @@ export default {
     // this.$store.commit('increment', { value: 1 });
     //   this.$store.dispatch('increment', { value: 1 });
     // },
-    ...mapActions(['increment']),
+    ...mapActions('counter', ['increment']),
   },
   computed: {
     isAuth() {
