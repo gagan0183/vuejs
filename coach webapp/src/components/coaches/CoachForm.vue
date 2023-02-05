@@ -2,12 +2,23 @@
   <form @submit.prevent="submit()">
     <div class="form-control" :class="{ invalid: !firstName.isValid }">
       <label id="firstname">Firstname</label>
-      <input type="text" id="firstname" v-model.trim="firstName.val" />
-      <div v-if="!firstName.isValid">First name is invalid</div>
+      <input
+        type="text"
+        id="firstname"
+        v-model.trim="firstName.val"
+        @blur="clearValidity('firstName')"
+      />
+      <div v-if="!firstName.isValid">First name is empty</div>
     </div>
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
       <label id="lastname">Lastname</label>
-      <input type="text" id="lastname" v-model.trim="lastName.val" />
+      <input
+        type="text"
+        id="lastname"
+        v-model.trim="lastName.val"
+        @blur="clearValidity('lastName')"
+      />
+      <div v-if="!lastName.isValid">Lat name is empty</div>
     </div>
     <div class="form-control" :class="{ invalid: !description.isValid }">
       <label id="description">Description</label>
@@ -15,11 +26,19 @@
         id="description"
         rows="5"
         v-model.trim="description.val"
+        @blur="clearValidity('description')"
       ></textarea>
+      <div v-if="!description.isValid">description is empty</div>
     </div>
     <div class="form-control" :class="{ invalid: !rate.isValid }">
       <label id="rate">Hourly Rate</label>
-      <input type="number" id="rate" v-model.number="rate.val" />
+      <input
+        type="number"
+        id="rate"
+        v-model.number="rate.val"
+        @blur="clearValidity('rate')"
+      />
+      <div v-if="!rate.isValid">rate is empty</div>
     </div>
     <div class="form-controls" :class="{ invalid: !areas.isValid }">
       <h3>Areas of Expertise</h3>
@@ -29,6 +48,7 @@
           id="frontend"
           value="frontend"
           v-model="areas.val"
+          @blur="clearValidity('areas')"
         />
         <label for="frontend">Frontend development</label>
       </div>
@@ -38,12 +58,21 @@
           id="backend"
           value="backend"
           v-model="areas.val"
+          @blur="clearValidity('areas')"
         />
         <label for="backend">Backend development</label>
       </div>
       <div>
-        <input type="checkbox" id="career" value="career" v-model="areas.val" />
+        <input
+          type="checkbox"
+          id="career"
+          value="career"
+          v-model="areas.val"
+          @blur="clearValidity('areas')"
+        />
         <label for="career">Careers</label>
+
+        <div v-if="!areas.isValid">areas is empty</div>
       </div>
     </div>
     <p v-if="!formIsValid">Please handle the errors</p>
@@ -80,6 +109,9 @@ export default {
     };
   },
   methods: {
+    clearValidity(input) {
+      this[input].isValid = true;
+    },
     validate() {
       this.formIsValid = true;
       if (this.firstName.val === '') {
@@ -109,11 +141,11 @@ export default {
         return;
       }
       const form = {
-        first: this.firstName,
-        last: this.lastName,
-        desc: this.description,
-        rate: this.rate,
-        areas: this.areas,
+        first: this.firstName.val,
+        last: this.lastName.val,
+        desc: this.description.val,
+        rate: this.rate.val,
+        areas: this.areas.val,
       };
       this.$emit('save-data', form);
     },
