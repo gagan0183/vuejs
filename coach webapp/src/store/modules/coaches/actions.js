@@ -33,7 +33,8 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      // error
+      const error = new Error(response.data.message || 'Failed to fecth!');
+      throw error;
     }
     const coaches = [];
     for (const key in responseData) {
