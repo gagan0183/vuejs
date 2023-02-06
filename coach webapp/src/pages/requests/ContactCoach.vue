@@ -1,5 +1,5 @@
 <template>
-  <form @submit="submitForm()">
+  <form @submit.prevent="submitForm()">
     <div class="form-control">
       <label for="email">Your E-Mail</label>
       <input type="email" id="email" v-model.trim="email" />
@@ -36,7 +36,7 @@ export default {
         return;
       }
       this.$store.dispatch('requests/contactCoach', {
-        coachId: this.$route.id,
+        coachId: this.$route.params.id,
         email: this.email,
         message: this.message,
       });
