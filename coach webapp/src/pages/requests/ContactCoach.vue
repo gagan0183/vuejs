@@ -5,7 +5,7 @@
       <input type="email" id="email" v-model.trim="email" />
     </div>
     <div class="form-control">
-      <label for="message">Your E-Mail</label>
+      <label for="message">Your message</label>
       <textarea rows="5" id="message" v-model.trim="message"></textarea>
     </div>
     <p class="errors" v-if="!formIsValid">Please enter valid values</p>
@@ -35,6 +35,12 @@ export default {
         this.formIsValid = false;
         return;
       }
+      this.$store.dispatch('requests/contactCoach', {
+        coachId: this.$route.id,
+        email: this.email,
+        message: this.message,
+      });
+      this.$router.replace('/coaches');
     },
   },
 };

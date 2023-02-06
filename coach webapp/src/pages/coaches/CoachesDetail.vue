@@ -10,6 +10,7 @@
       <header>
         <h2>Interested? Reach out now!</h2>
         <base-button link :to="contactLink">Contact</base-button>
+        <router-view></router-view>
       </header>
     </base-card>
   </section>
