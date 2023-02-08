@@ -3,6 +3,7 @@ import CoachesList from './pages/coaches/CoachesList.vue';
 import CoachesDetail from './pages/coaches/CoachesDetail.vue';
 import CoachesRegistration from './pages/coaches/CoachesRegistration.vue';
 import ContactCoach from './pages/requests/ContactCoach';
+import NotPresent from './pages/NotPresent.vue';
 import RequestsReceived from './pages/requests/RequestsReceived.vue';
 
 const router = createRouter({
@@ -37,7 +38,7 @@ const router = createRouter({
     },
     {
       path: '/:notPresent(.*)',
-      component: null,
+      component: NotPresent,
     },
   ],
 });
